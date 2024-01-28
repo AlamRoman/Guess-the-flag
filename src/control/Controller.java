@@ -3,6 +3,7 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Score;
 import view.FlagQuizPanel;
 import view.MenuPanel;
 import view.MyFrame;
@@ -14,6 +15,8 @@ public class Controller implements ActionListener{
 	private FlagQuizPanel flagQuizPanel;
 	private MenuPanel menuPanel;
 	
+	private Score score;
+	
 	public Controller(MyFrame frame, MenuPanel menuPanel, FlagQuizPanel flagQuizPanel) {
 		this.frame = frame;
 		this.menuPanel = menuPanel;
@@ -21,6 +24,8 @@ public class Controller implements ActionListener{
 		
 		menuPanel.addListener(this);
 		flagQuizPanel.addListener(this);
+		
+		score = Score.getInstance();
 	}
 
 	@Override
@@ -42,8 +47,17 @@ public class Controller implements ActionListener{
 				) {
 			
 			if (flagQuizPanel.checkAnswer(e.getActionCommand())) {
+				
+				score.increaseCorrectAnswer();
+				
 				flagQuizPanel.newQuiz();
+			}else if(flagQuizPanel.isGuessedWrong() == false){
+				
+				score.increaseWrongAnswer();
+				flagQuizPanel.setGuessedWrong(true);
 			}
+			
+			flagQuizPanel.updateScore(score);
 		}
 		
 	}

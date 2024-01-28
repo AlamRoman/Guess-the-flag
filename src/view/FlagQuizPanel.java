@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 
 import model.FlagQuiz;
+import model.Score;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 public class FlagQuizPanel extends JPanel {
 
@@ -33,6 +35,11 @@ public class FlagQuizPanel extends JPanel {
 	private JButton btnOption2;
 	private JButton btnOption3;
 	private JButton btnOption4;
+	
+	private Boolean guessedWrong;
+	
+	private JLabel lblCorrectAnswer;
+	private JLabel lblWrongAnswer;
 	
 	public FlagQuizPanel() {
 		setBackground(new Color(208, 255, 255));
@@ -82,6 +89,27 @@ public class FlagQuizPanel extends JPanel {
 		btnOption4.setBounds(387, 421, 241, 47);
 		add(btnOption4);
 		
+		JLabel lblScore = new JLabel("Score");
+		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScore.setBounds(605, 35, 40, 11);
+		add(lblScore);
+		
+		lblCorrectAnswer = new JLabel("0");
+		lblCorrectAnswer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblCorrectAnswer.setBackground(new Color(255, 255, 255));
+		lblCorrectAnswer.setForeground(new Color(0, 128, 0));
+		lblCorrectAnswer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorrectAnswer.setBounds(588, 61, 40, 11);
+		add(lblCorrectAnswer);
+		
+		lblWrongAnswer = new JLabel("0");
+		lblWrongAnswer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblWrongAnswer.setForeground(new Color(255, 0, 0));
+		lblWrongAnswer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWrongAnswer.setBounds(628, 61, 40, 11);
+		add(lblWrongAnswer);
+		
 		//create new quiz
 		newQuiz();
 	}
@@ -99,7 +127,8 @@ public class FlagQuizPanel extends JPanel {
 	public void newQuiz() {
 		
 		flagQuiz = new FlagQuiz();
-		System.out.println(flagQuiz.getCorrectAnswer());
+		
+		guessedWrong = false;
 		
 		//set flag image
 		lblFlagImage.setIcon(flagQuiz.getQuestionFlag());
@@ -167,14 +196,24 @@ public class FlagQuizPanel extends JPanel {
 			break;
 		}
 		
-		if (guessedCountryBtn.getText().equalsIgnoreCase(flagQuiz.getCorrectAnswer())) {
-			System.out.println("Correct");
-			
+		if (guessedCountryBtn.getText().equalsIgnoreCase(flagQuiz.getCorrectAnswer())) {			
 			return true;
 		}else {
-			System.out.println("wrong");
 			guessedCountryBtn.setBackground(new Color(252, 54, 40));
 			return false;
 		}
+	}
+
+	public Boolean isGuessedWrong() {
+		return guessedWrong;
+	}
+
+	public void setGuessedWrong(Boolean guessedWrong) {
+		this.guessedWrong = guessedWrong;
+	}
+	
+	public void updateScore(Score score) {
+		lblCorrectAnswer.setText(score.getCorrectAnswer()+"");
+		lblWrongAnswer.setText(score.getWrongAnswer()+"");
 	}
 }
