@@ -1,10 +1,9 @@
 package model;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class CountryList {
 
@@ -14,15 +13,17 @@ public class CountryList {
 		
 		countries = new ArrayList<String>();
 		
-		try {
-			
-			List<String> countryNames = Files.readAllLines(Paths.get("src/resources/countries.txt"));
-			
-			countries = (ArrayList<String>) countryNames;
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("resources/countries.txt");
+	             Scanner scanner = new Scanner(inputStream)) {
+
+	            while (scanner.hasNextLine()) {
+	                countries.add(scanner.nextLine());
+	            }
+
+	        } catch (Exception e) {
+	            System.out.println("Error reading countries.txt: " + e.getMessage());
+	        }
+		
 	}
 	
 	

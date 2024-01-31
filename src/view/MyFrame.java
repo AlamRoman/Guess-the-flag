@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -15,6 +16,9 @@ public class MyFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(720, 520);
 		setLocationRelativeTo(null);
+		
+		ImageIcon icon = new ImageIcon("src/resources/icon.png");
+		setIconImage(icon.getImage());
 		
 		contentPane = panel;
 

@@ -1,6 +1,8 @@
 package model;
 
 import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
@@ -13,33 +15,46 @@ public class FlagQuiz {
 	
 	private ImageIcon questionFlag;
 	
+	private CountryList countryList;
+	
 	public FlagQuiz() {
+		
+		countryList = new CountryList();
 		
 		newQuiz();
 	}
 	
 	public void newQuiz() {
 		
-		CountryList cl = new CountryList();
+		answer = countryList.getRandomCountry();
 		
-		answer = cl.getRandomCountry();
-		
-		questionFlag = new ImageIcon("src/resources/flags/"+answer+".png");
+		 try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("resources/flags/" + answer + ".png")) {
+            if (inputStream != null) {
+                
+                questionFlag = new ImageIcon(javax.imageio.ImageIO.read(inputStream));
+            } else {
+                System.out.println("Error : flag image for country " + answer + " not found");
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading image: " + e.getMessage());
+        }
+		 
+		 
 		
 		questionFlag = scaleIcon(questionFlag, 0.75);
 		
 		do {
-			option1 = cl.getRandomCountry();
+			option1 = countryList.getRandomCountry();
 			
 		} while (option1.equals(answer));
 		
 		do {
-			option2 = cl.getRandomCountry();
+			option2 = countryList.getRandomCountry();
 			
 		} while (option2.equals(answer) || option2.equals(option1));
 		
 		do {
-			option3 = cl.getRandomCountry();
+			option3 = countryList.getRandomCountry();
 			
 		} while (option3.equals(answer) || option3.equals(option1) || option3.equals(option2));
 	}
