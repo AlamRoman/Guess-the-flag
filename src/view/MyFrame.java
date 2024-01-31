@@ -1,5 +1,8 @@
 package view;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,8 +20,20 @@ public class MyFrame extends JFrame {
 		setSize(720, 520);
 		setLocationRelativeTo(null);
 		
-		ImageIcon icon = new ImageIcon("src/resources/icon.png");
-		setIconImage(icon.getImage());
+		ImageIcon icon;
+		
+		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("resources/icon.png")) {
+            if (inputStream != null) {
+                
+                icon = new ImageIcon(javax.imageio.ImageIO.read(inputStream));
+                setIconImage(icon.getImage());
+                
+            } else {
+                System.out.println("Error : icon image not found");
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading image: " + e.getMessage());
+        }
 		
 		contentPane = panel;
 
