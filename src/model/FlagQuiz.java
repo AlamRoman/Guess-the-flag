@@ -1,8 +1,6 @@
 package model;
 
 import java.awt.Image;
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
@@ -28,18 +26,8 @@ public class FlagQuiz {
 		
 		answer = countryList.getRandomCountry();
 		
-		 try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("resources/flags/" + answer + ".png")) {
-            if (inputStream != null) {
-                
-                questionFlag = new ImageIcon(javax.imageio.ImageIO.read(inputStream));
-            } else {
-                System.out.println("Error : flag image for country " + answer + " not found");
-            }
-        } catch (IOException e) {
-            System.out.println("Error loading image: " + e.getMessage());
-        }
-		 
-		 
+		ImageLoader imageLoader = new ImageLoader();
+		questionFlag = imageLoader.getImageFrom("resources/flags/" + answer + ".png");
 		
 		questionFlag = scaleIcon(questionFlag, 0.75);
 		
