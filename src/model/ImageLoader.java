@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,4 +24,17 @@ public class ImageLoader {
         }
 		return null;
 	}
+	
+	public ImageIcon scaleImage(ImageIcon icon, double scale) {
+        int newWidth = (int) (icon.getIconWidth() * scale);
+        int newHeight = (int) (icon.getIconHeight() * scale);
+
+        Image image = icon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        return new ImageIcon(image);
+    }
+	
+	public static ImageIcon scaleImage(ImageIcon icon, int newWidth, int newHeight) {
+        Image image = icon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        return new ImageIcon(image);
+    }
 }

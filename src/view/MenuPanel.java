@@ -41,7 +41,7 @@ public class MenuPanel extends JPanel {
 		separator.setBounds(8, 96, 684, 23);
 		add(separator);
 		
-		btnHardcoreMode = new JButton("Hardcore mode");
+		btnHardcoreMode = new JButton("Hardcore Mode");
 		btnHardcoreMode.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnHardcoreMode.setActionCommand("playHardcore");
 		btnHardcoreMode.setBounds(237, 219, 213, 46);

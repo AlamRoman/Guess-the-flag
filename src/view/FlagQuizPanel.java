@@ -37,6 +37,8 @@ public class FlagQuizPanel extends JPanel {
 	protected JButton btnOption3;
 	protected JButton btnOption4;
 	
+	protected JLabel lblTitle;
+	
 	private Boolean guessedWrong;
 	
 	private JLabel lblCorrectAnswer;
@@ -56,7 +58,7 @@ public class FlagQuizPanel extends JPanel {
 		
 		add(lblFlagImage);
 		
-		JLabel lblTitle = new JLabel("Flag Quiz");
+		lblTitle = new JLabel("Flag Quiz");
 		lblTitle.setVerticalAlignment(SwingConstants.TOP);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 20));

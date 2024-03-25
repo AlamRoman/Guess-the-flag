@@ -29,7 +29,7 @@ public class FlagQuiz {
 		ImageLoader imageLoader = new ImageLoader();
 		questionFlag = imageLoader.getImageFrom("resources/flags/" + answer + ".png");
 		
-		questionFlag = scaleIcon(questionFlag, 0.75);
+		questionFlag = imageLoader.scaleImage(questionFlag, 0.75);
 		
 		do {
 			option1 = countryList.getRandomCountry();
@@ -66,12 +66,4 @@ public class FlagQuiz {
 	public String getOption3() {
 		return option3;
 	}
-	
-	private ImageIcon scaleIcon(ImageIcon icon, double scale) {
-        int newWidth = (int) (icon.getIconWidth() * scale);
-        int newHeight = (int) (icon.getIconHeight() * scale);
-
-        Image image = icon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-        return new ImageIcon(image);
-    }
 }
