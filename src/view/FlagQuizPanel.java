@@ -30,12 +30,12 @@ public class FlagQuizPanel extends JPanel {
 	
 	private JLabel lblFlagImage;
 	
-	private JButton btnBack;
+	protected JButton btnBack;
 	
-	private JButton btnOption1;
-	private JButton btnOption2;
-	private JButton btnOption3;
-	private JButton btnOption4;
+	protected JButton btnOption1;
+	protected JButton btnOption2;
+	protected JButton btnOption3;
+	protected JButton btnOption4;
 	
 	private Boolean guessedWrong;
 	

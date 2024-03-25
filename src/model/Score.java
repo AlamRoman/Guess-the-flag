@@ -2,19 +2,12 @@ package model;
 
 public class Score {
 	
-	//singleton
-	private static final Score instance = new Score();
-	
 	private int correctAnswer;
 	private int wrongAnswer;
 	
-	private Score() {
+	public Score() {
 		correctAnswer = 0;
 		wrongAnswer = 0;
-	}
-	
-	public static Score getInstance() {
-		return instance;
 	}
 
 	public int getCorrectAnswer() {
@@ -32,4 +25,5 @@ public class Score {
 	public void increaseWrongAnswer() {
 		wrongAnswer++;
 	}
+	
 }

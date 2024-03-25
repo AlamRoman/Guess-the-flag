@@ -4,34 +4,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.Score;
-import view.FlagQuizPanel;
+import view.HardcorePanel;
 import view.MenuPanel;
 import view.MyFrame;
 
-public class FlagQuizPanelController implements ActionListener {
-	
+public class HardcoreController implements ActionListener{
+
 	private MyFrame frame;
 	private MenuPanel menuPanel;
-	private FlagQuizPanel flagQuizPanel;
+	private HardcorePanel hardcorePanel;
 	
 	private Score score;
 	
-	public FlagQuizPanelController(MyFrame frame, MenuPanel menuPanel, FlagQuizPanel flagQuizPanel){
+	public HardcoreController(MyFrame frame, MenuPanel menuPanel, HardcorePanel hardcorePanel) {
 		this.frame = frame;
 		this.menuPanel = menuPanel;
-		this.flagQuizPanel = flagQuizPanel;
+		this.hardcorePanel = hardcorePanel;
 		
-		flagQuizPanel.addListener(this);
+		hardcorePanel.addListener(this);
 		
 		score = new Score();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		//go back button
 		if (e.getActionCommand().equalsIgnoreCase("goBack")) {
-			
 			frame.changeContentPane(menuPanel);
 		}
 		
@@ -42,19 +40,21 @@ public class FlagQuizPanelController implements ActionListener {
 					e.getActionCommand().equalsIgnoreCase("option 4")
 				) {
 			
-			if (flagQuizPanel.checkAnswer(e.getActionCommand())) {
+			if (hardcorePanel.checkAnswer(e.getActionCommand())) {
 				
 				score.increaseCorrectAnswer();
 				
-				flagQuizPanel.newQuiz();
-			}else if(flagQuizPanel.isGuessedWrong() == false){
+				hardcorePanel.newQuiz();
+			}else if(hardcorePanel.isGuessedWrong() == false){
 				
 				score.increaseWrongAnswer();
-				flagQuizPanel.setGuessedWrong(true);
+				hardcorePanel.setGuessedWrong(true);
 			}
 			
-			flagQuizPanel.updateScore(score);
+			hardcorePanel.updateScore(score);
 		}
 		
 	}
+	
+	
 }
