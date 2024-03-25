@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import control.Controller;
+import control.FlagQuizPanelController;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -114,7 +115,7 @@ public class FlagQuizPanel extends JPanel {
 		newQuiz();
 	}
 	
-	public void addListener(Controller controller) {
+	public void addListener(FlagQuizPanelController controller) {
 		
 		btnBack.addActionListener(controller);
 		

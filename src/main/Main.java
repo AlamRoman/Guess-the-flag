@@ -1,6 +1,7 @@
 package main;
 
 import control.Controller;
+import control.FlagQuizPanelController;
 import model.CountryList;
 import model.FlagQuiz;
 import view.FlagQuizPanel;
@@ -20,6 +21,7 @@ public class Main {
 		MyFrame frame = new MyFrame(menuPanel);
 		
 		Controller controller = new Controller(frame, menuPanel, flagQuizPanel);
+		FlagQuizPanelController fc = new FlagQuizPanelController(frame, menuPanel, flagQuizPanel);
 	}
 	
 }
