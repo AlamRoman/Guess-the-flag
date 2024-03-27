@@ -14,7 +14,7 @@ public class HardcorePanel extends FlagQuizPanel{
 	private ImageIcon heart;
 	private ImageIcon emptyHeart;
 	
-	private final int MAX_HEART = 1;
+	private final int MAX_HEART = 5;
 	private int nHeart;
 	
 	private JPanel panelHearts;
@@ -34,15 +34,15 @@ public class HardcorePanel extends FlagQuizPanel{
 		ImageLoader imageLoader = new ImageLoader();
 		
 		heart = imageLoader.getImageFrom("resources/heart.png");
-		heart = ImageLoader.scaleImage(heart, 27, 27);
+		heart = imageLoader.scaleImage(heart, 27, 27);
 		
 		emptyHeart = imageLoader.getImageFrom("resources/empty-heart.png");
-		emptyHeart = ImageLoader.scaleImage(emptyHeart, 21, 21);
+		emptyHeart = imageLoader.scaleImage(emptyHeart, 21, 21);
 		
 		//hearts container
 		panelHearts = new JPanel();
 		panelHearts.setBackground(new Color(208, 255, 255));
-		panelHearts.setBounds(21, 72, 172, 33);
+		panelHearts.setBounds(21, 72, 180, 33);
 		add(panelHearts);
 		panelHearts.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -52,6 +52,7 @@ public class HardcorePanel extends FlagQuizPanel{
 	public void addListener(HardcoreController controller) {
 		
 		btnBack.addActionListener(controller);
+		btnBack.addMouseListener(controller);
 		
 		btnOption1.addActionListener(controller);
 		btnOption2.addActionListener(controller);

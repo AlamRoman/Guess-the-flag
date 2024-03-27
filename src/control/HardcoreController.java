@@ -2,6 +2,8 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
@@ -10,7 +12,7 @@ import view.HardcorePanel;
 import view.MenuPanel;
 import view.MyFrame;
 
-public class HardcoreController implements ActionListener{
+public class HardcoreController implements ActionListener, MouseListener{
 
 	private MyFrame frame;
 	private MenuPanel menuPanel;
@@ -82,6 +84,36 @@ public class HardcoreController implements ActionListener{
 			
 			hardcorePanel.updateScore(score);
 		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		hardcorePanel.btnBackMouseEntered();
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		hardcorePanel.btnBackMouseExited();
 		
 	}
 	

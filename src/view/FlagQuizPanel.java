@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 
 import model.FlagQuiz;
+import model.ImageLoader;
 import model.Score;
 
 import javax.swing.JLabel;
@@ -44,6 +45,8 @@ public class FlagQuizPanel extends JPanel {
 	protected JLabel lblCorrectAnswer;
 	protected JLabel lblWrongAnswer;
 	
+	private ImageIcon goBackIcon;
+	
 	public FlagQuizPanel() {
 		setBackground(new Color(208, 255, 255));
 		setSize(700, 500);
@@ -65,9 +68,19 @@ public class FlagQuizPanel extends JPanel {
 		lblTitle.setBounds(227, 25, 230, 47);
 		add(lblTitle);
 		
-		btnBack = new JButton("Go Back");
-		btnBack.setBounds(31, 25, 103, 25);
+		//go back button
+		btnBack = new JButton("");
+		btnBack.setBounds(31, 20, 110, 38);
 		btnBack.setActionCommand("goBack");
+		//make the button transparent
+		btnBack.setOpaque(false);
+		btnBack.setContentAreaFilled(false);
+		btnBack.setBorderPainted(false);
+		btnBack.setFocusPainted(false);
+		//set the button image
+		ImageLoader imageLoader = new ImageLoader();
+		goBackIcon = imageLoader.getImageFrom("resources/backButton.png");
+		btnBack.setIcon(imageLoader.scaleImage(goBackIcon, 0.027));
 		add(btnBack);
 		
 		JSeparator separator = new JSeparator();
@@ -120,6 +133,7 @@ public class FlagQuizPanel extends JPanel {
 	public void addListener(FlagQuizPanelController controller) {
 		
 		btnBack.addActionListener(controller);
+		btnBack.addMouseListener(controller);
 		
 		btnOption1.addActionListener(controller);
 		btnOption2.addActionListener(controller);
@@ -210,5 +224,13 @@ public class FlagQuizPanel extends JPanel {
 	public void updateScore(Score score) {
 		lblCorrectAnswer.setText(score.getCorrectAnswer()+"");
 		lblWrongAnswer.setText(score.getWrongAnswer()+"");
+	}
+	
+	public void btnBackMouseEntered() {
+		btnBack.setIcon(ImageLoader.scaleImage(goBackIcon, 0.029));
+	}
+	
+	public void btnBackMouseExited() {
+		btnBack.setIcon(ImageLoader.scaleImage(goBackIcon, 0.027));
 	}
 }

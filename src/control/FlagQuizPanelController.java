@@ -2,13 +2,15 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import model.Score;
 import view.FlagQuizPanel;
 import view.MenuPanel;
 import view.MyFrame;
 
-public class FlagQuizPanelController implements ActionListener {
+public class FlagQuizPanelController implements ActionListener, MouseListener {
 	
 	private MyFrame frame;
 	private MenuPanel menuPanel;
@@ -60,5 +62,34 @@ public class FlagQuizPanelController implements ActionListener {
 			flagQuizPanel.updateScore(score);
 		}
 		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		flagQuizPanel.btnBackMouseEntered();
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		flagQuizPanel.btnBackMouseExited();
 	}
 }
