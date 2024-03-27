@@ -3,6 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import model.Score;
 import view.HardcorePanel;
 import view.MenuPanel;
@@ -42,13 +44,40 @@ public class HardcoreController implements ActionListener{
 			
 			if (hardcorePanel.checkAnswer(e.getActionCommand())) {
 				
-				score.increaseCorrectAnswer();
+				//if already guessed wrong, don't increment score
+				if (!hardcorePanel.isGuessedWrong()) {
+					score.increaseCorrectAnswer();
+				}
 				
 				hardcorePanel.newQuiz();
+				
 			}else if(hardcorePanel.isGuessedWrong() == false){
 				
 				score.increaseWrongAnswer();
 				hardcorePanel.setGuessedWrong(true);
+				
+				hardcorePanel.decrementHeart();
+				hardcorePanel.showHearts();
+				
+				if (hardcorePanel.getnHeart() <= 0) {
+					
+					String message = "<html><div style='text-align: center;'><font size='+1'><b>Game Over</b></font><br><br>";
+					message += "Score: " + score.getCorrectAnswer() + "<br>";
+					message += "Highest score: 0" + "<br><br><hr>";
+					message += "Do you want to play again?</div></html>";
+					
+					int choice = JOptionPane.showConfirmDialog(hardcorePanel, message, "Game Over", JOptionPane.YES_NO_OPTION);
+					
+					//new game
+					hardcorePanel.resetGame();
+					score.reset();
+					hardcorePanel.newQuiz();
+					
+					//go back
+					if (choice == JOptionPane.NO_OPTION) {
+						frame.changeContentPane(menuPanel);
+					}
+				}
 			}
 			
 			hardcorePanel.updateScore(score);

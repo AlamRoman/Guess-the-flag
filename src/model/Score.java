@@ -6,8 +6,7 @@ public class Score {
 	private int wrongAnswer;
 	
 	public Score() {
-		correctAnswer = 0;
-		wrongAnswer = 0;
+		reset();
 	}
 
 	public int getCorrectAnswer() {
@@ -26,4 +25,8 @@ public class Score {
 		wrongAnswer++;
 	}
 	
+	public void reset() {
+		correctAnswer = 0;
+		wrongAnswer = 0;
+	}
 }

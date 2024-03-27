@@ -26,7 +26,7 @@ public class MenuPanel extends JPanel {
 		setLayout(null);
 		
 		btnFlagQuiz = new JButton("Flag Quiz");
-		btnFlagQuiz.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnFlagQuiz.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnFlagQuiz.setBounds(237, 152, 213, 46);
 		btnFlagQuiz.setActionCommand("playFlagQuiz");
 		add(btnFlagQuiz);
@@ -42,7 +42,7 @@ public class MenuPanel extends JPanel {
 		add(separator);
 		
 		btnHardcoreMode = new JButton("Hardcore Mode");
-		btnHardcoreMode.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnHardcoreMode.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnHardcoreMode.setActionCommand("playHardcore");
 		btnHardcoreMode.setBounds(237, 219, 213, 46);
 		add(btnHardcoreMode);

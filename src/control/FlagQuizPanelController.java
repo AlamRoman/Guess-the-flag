@@ -44,9 +44,13 @@ public class FlagQuizPanelController implements ActionListener {
 			
 			if (flagQuizPanel.checkAnswer(e.getActionCommand())) {
 				
-				score.increaseCorrectAnswer();
+				//if already guessed wrong, don't increment score
+				if (!flagQuizPanel.isGuessedWrong()) {
+					score.increaseCorrectAnswer();
+				}
 				
 				flagQuizPanel.newQuiz();
+				
 			}else if(flagQuizPanel.isGuessedWrong() == false){
 				
 				score.increaseWrongAnswer();

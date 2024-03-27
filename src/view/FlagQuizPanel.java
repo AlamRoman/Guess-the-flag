@@ -41,8 +41,8 @@ public class FlagQuizPanel extends JPanel {
 	
 	private Boolean guessedWrong;
 	
-	private JLabel lblCorrectAnswer;
-	private JLabel lblWrongAnswer;
+	protected JLabel lblCorrectAnswer;
+	protected JLabel lblWrongAnswer;
 	
 	public FlagQuizPanel() {
 		setBackground(new Color(208, 255, 255));
@@ -150,7 +150,7 @@ public class FlagQuizPanel extends JPanel {
 		btnOption3.setText(options.get(2));
 		btnOption4.setText(options.get(3));
 		
-		//set action commads to the buttons
+		//set action commands to the buttons
 		btnOption1.setActionCommand("option 1");
 		btnOption2.setActionCommand("option 2");
 		btnOption3.setActionCommand("option 3");
@@ -163,14 +163,6 @@ public class FlagQuizPanel extends JPanel {
 		btnOption4.setBackground(Color.white);
  		
 	}
-	
-	private ImageIcon scaleIcon(ImageIcon icon, double scale) {
-        int newWidth = (int) (icon.getIconWidth() * scale);
-        int newHeight = (int) (icon.getIconHeight() * scale);
-
-        Image image = icon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-        return new ImageIcon(image);
-    }
 	
 	public void update() {
 		revalidate();

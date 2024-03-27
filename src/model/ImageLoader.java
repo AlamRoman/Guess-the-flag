@@ -25,7 +25,7 @@ public class ImageLoader {
 		return null;
 	}
 	
-	public ImageIcon scaleImage(ImageIcon icon, double scale) {
+	public static ImageIcon scaleImage(ImageIcon icon, double scale) {
         int newWidth = (int) (icon.getIconWidth() * scale);
         int newHeight = (int) (icon.getIconHeight() * scale);
 
