@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -61,11 +66,18 @@ public class HardcoreController implements ActionListener, MouseListener{
 				hardcorePanel.decrementHeart();
 				hardcorePanel.showHearts();
 				
+				//gameover
 				if (hardcorePanel.getnHeart() <= 0) {
+					
+					int highScore = readHighScore();
+					
+					if (score.getCorrectAnswer() > highScore) {
+						writeHighScore(score.getCorrectAnswer());
+					}
 					
 					String message = "<html><div style='text-align: center;'><font size='+1'><b>Game Over</b></font><br><br>";
 					message += "Score: " + score.getCorrectAnswer() + "<br>";
-					message += "Highest score: 0" + "<br><br><hr>";
+					message += "Highest score: " + highScore + "<br><br><hr>";
 					message += "Do you want to play again?</div></html>";
 					
 					int choice = JOptionPane.showConfirmDialog(hardcorePanel, message, "Game Over", JOptionPane.YES_NO_OPTION);
@@ -117,5 +129,28 @@ public class HardcoreController implements ActionListener, MouseListener{
 		
 	}
 	
+	private int readHighScore() {
+		
+		int temp;
+		
+		Path path = Paths.get("src/resources/hardcore-high-score.txt");
+        try {
+            List<String> lines = Files.readAllLines(path);
+            temp = Integer.parseInt(lines.get(0));
+        }catch (Exception e) {
+			temp = 0;
+		}
+
+		return temp;
+	}
 	
+	private void writeHighScore(int score) {
+		try {
+			FileWriter writer = new FileWriter("src/resources/hardcore-high-score.txt");
+			writer.write(Integer.toString(score));
+			writer.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
