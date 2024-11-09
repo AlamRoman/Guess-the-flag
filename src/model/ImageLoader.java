@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 public class ImageLoader {
 
+	//load image using the path relative to src folder
 	public ImageIcon getImageFrom(String path) {
 		ImageIcon image;
 		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(path)) {

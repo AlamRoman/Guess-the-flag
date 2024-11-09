@@ -91,18 +91,22 @@ public class FlagQuizPanel extends JPanel {
 		
 		btnOption1 = new JButton("New button");
 		btnOption1.setBounds(87, 356, 241, 47);
+		btnOption1.setFocusable(false);
 		add(btnOption1);
 		
 		btnOption2 = new JButton("New button");
 		btnOption2.setBounds(387, 356, 241, 47);
+		btnOption2.setFocusable(false);
 		add(btnOption2);
 		
 		btnOption3 = new JButton("New button");
 		btnOption3.setBounds(87, 421, 241, 47);
+		btnOption3.setFocusable(false);
 		add(btnOption3);
 		
 		btnOption4 = new JButton("New button");
 		btnOption4.setBounds(387, 421, 241, 47);
+		btnOption4.setFocusable(false);
 		add(btnOption4);
 		
 		JLabel lblScore = new JLabel("Score");
